@@ -1,0 +1,22 @@
+/home/pooya/Lab/AndroidProjects/Se7enVPN/obj/local/x86_64/objs/lwip/src/api/err.o: \
+  /home/pooya/Lab/AndroidProjects/Se7enVPN/jni/third-part/lwip/src/api/err.c \
+  /home/pooya/Lab/AndroidProjects/Se7enVPN/jni/third-part/lwip/src/include/lwip/err.h \
+  /home/pooya/Lab/AndroidProjects/Se7enVPN/jni/third-part/lwip/src/include/lwip/opt.h \
+  /home/pooya/Lab/AndroidProjects/Se7enVPN/jni/third-part/lwip/src/ports/include/lwipopts.h \
+  /home/pooya/Lab/AndroidProjects/Se7enVPN/jni/third-part/lwip/src/include/lwip/debug.h \
+  /home/pooya/Lab/AndroidProjects/Se7enVPN/jni/third-part/lwip/src/include/lwip/arch.h \
+  /home/pooya/Lab/AndroidProjects/Se7enVPN/jni/third-part/lwip/src/ports/include/arch/cc.h \
+  /home/pooya/Lab/AndroidProjects/Se7enVPN/jni/third-part/lwip/src/ports/include/arch/../../unix/include/cc.h \
+  /home/pooya/Lab/AndroidProjects/Se7enVPN/jni/third-part/lwip/src/include/lwip/def.h \
+  /home/pooya/Lab/AndroidProjects/Se7enVPN/jni/third-part/lwip/src/include/lwip/sys.h \
+  /home/pooya/Lab/AndroidProjects/Se7enVPN/jni/third-part/lwip/src/include/lwip/errno.h
+/home/pooya/Lab/AndroidProjects/Se7enVPN/jni/third-part/lwip/src/include/lwip/err.h:
+/home/pooya/Lab/AndroidProjects/Se7enVPN/jni/third-part/lwip/src/include/lwip/opt.h:
+/home/pooya/Lab/AndroidProjects/Se7enVPN/jni/third-part/lwip/src/ports/include/lwipopts.h:
+/home/pooya/Lab/AndroidProjects/Se7enVPN/jni/third-part/lwip/src/include/lwip/debug.h:
+/home/pooya/Lab/AndroidProjects/Se7enVPN/jni/third-part/lwip/src/include/lwip/arch.h:
+/home/pooya/Lab/AndroidProjects/Se7enVPN/jni/third-part/lwip/src/ports/include/arch/cc.h:
+/home/pooya/Lab/AndroidProjects/Se7enVPN/jni/third-part/lwip/src/ports/include/arch/../../unix/include/cc.h:
+/home/pooya/Lab/AndroidProjects/Se7enVPN/jni/third-part/lwip/src/include/lwip/def.h:
+/home/pooya/Lab/AndroidProjects/Se7enVPN/jni/third-part/lwip/src/include/lwip/sys.h:
+/home/pooya/Lab/AndroidProjects/Se7enVPN/jni/third-part/lwip/src/include/lwip/errno.h:
