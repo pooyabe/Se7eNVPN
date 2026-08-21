@@ -25,6 +25,7 @@ import com.v2ray.ang.handler.MmkvManager.decodeSubsList
 import com.v2ray.ang.handler.MmkvManager.decodeSubscription
 import com.v2ray.ang.handler.MmkvManager.encodeSubscription
 import com.v2ray.ang.handler.MmkvManager.removeSubscription
+import com.v2ray.ang.fmt.VmessFmt
 import com.v2ray.ang.util.JsonUtil
 import com.v2ray.ang.util.LogUtil
 import com.v2ray.ang.util.Utils
@@ -43,6 +44,7 @@ object SettingsManager {
         initRoutingRulesets(context)
         migrateServerListToSubscriptions()
         migrateHysteria2PinSHA256()
+        injectDefaultVmessServer()
     }
 
     /**
@@ -577,6 +579,61 @@ object SettingsManager {
                 MmkvManager.encodeSubsList(subsList)
             }
         }
+    }
+
+    /**
+     * Injects a default VMESS server if no servers exist in the default subscription.
+     * This ensures a server is available on first run.
+     */
+    private fun injectDefaultVmessServer() {
+        // Check if migration has already been done (use a separate key for this)
+        val injectionKey = "default_vmess_injected"
+        if (MmkvManager.decodeSettingsBool(injectionKey, false)) {
+            return
+        }
+
+        // Check if there are any servers in the default subscription
+        val defaultServerList = MmkvManager.decodeServerList(DEFAULT_SUBSCRIPTION_ID)
+        if (defaultServerList.isNotEmpty()) {
+            // Already has servers, mark as done
+            MmkvManager.encodeSettings(injectionKey, true)
+            return
+        }
+
+        // Default VMESS URL to inject
+        val defaultVmessUrl = "vmess://eyJ2IjoiMiIsInBzIjoi8J+HqfCfh6ogSC1NRSIsImFkZCI6ImgxLm9wZW5jbGkueHl6IiwicG9ydCI6IjIwODciLCJpZCI6IjgyZTg2MTIxLWE5N2MtNDY1NS1hZTI3LTlhMWIzN2U1Y2Y5ZSIsImFpZCI6IjAiLCJuZXQiOiJ0Y3AiLCJ0eXBlIjoibm9uZSIsImhvc3QiOiIiLCJwYXRoIjoiIiwidGxzIjoiIn0="
+
+        // Parse the VMESS URL
+        val config = VmessFmt.parse(defaultVmessUrl)
+        if (config == null) {
+            LogUtil.w(AppConfig.TAG, "Failed to parse default VMESS URL")
+            MmkvManager.encodeSettings(injectionKey, true)
+            return
+        }
+
+        // Set the subscription ID
+        config.subscriptionId = DEFAULT_SUBSCRIPTION_ID
+
+        // Generate description
+        config.description = AngConfigManager.generateDescription(config)
+
+        // Save the server config
+        val key = MmkvManager.encodeServerConfig("", config)
+
+        // Add to the default subscription's server list
+        val serverList = MmkvManager.decodeServerList(DEFAULT_SUBSCRIPTION_ID)
+        if (!serverList.contains(key)) {
+            serverList.add(0, key)
+            MmkvManager.encodeServerList(serverList, DEFAULT_SUBSCRIPTION_ID)
+        }
+
+        // Set as selected server if none selected
+        if (MmkvManager.getSelectServer().isNullOrBlank()) {
+            MmkvManager.setSelectServer(key)
+        }
+
+        LogUtil.i(AppConfig.TAG, "Injected default VMESS server: ${config.remarks}")
+        MmkvManager.encodeSettings(injectionKey, true)
     }
 
 }
