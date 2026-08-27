@@ -2,12 +2,7 @@
 This is a fork of 2dust/v2rayNG android vpn application.
 
 # This JOB
-In the main page activity:
-Delete top menu bar, containing Humburger menu, search and add and ... icon buttons.
-move the connect and disconnect button from bottom of the page, to the center, make it bigger. show the Only one injected server config below the start button and hide the server list section.
-put the connection status text (clickable) below button and server name.
-put the V2ray icon (application logo) above the button.
-make some styles for that finalized page and make it beautifull.
+Simplify the application main page, and just left the connect button and the connection status string (clickable). hide all other things and we don't want them. set some beautyfull style to remain items and make them center. in other word, we want just a simple apllication screen with a connect button and a clickable connection statusstring. that string, is now clickable by deafult and you don't have to add or modify anything for it's functionality. 
 
 # Rules
 - First of all create plans, tasks and subtasks before doing anything. write them in the CLAUDE.md file in the Tasks section.
@@ -16,9 +11,3 @@ make some styles for that finalized page and make it beautifull.
 
 # Tasks
 
-# Dont-Tasks
-
-# JOBS-DONE
-
-# Edited-Files (FROM Previous JOBS)
-- `/home/pooya/Lab/AndroidProjects/Se7enVPN/V2rayNG/app/src/main/java/com/v2ray/ang/handler/SettingsManager.kt` - Added default VMESS server injection logic
