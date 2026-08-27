@@ -13,6 +13,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -37,12 +38,22 @@ fun MainScreen(
     // Local state for connecting feedback
     var connecting by remember { mutableStateOf(false) }
 
-    // Determine button label
+    // Reset connecting state when service actually starts or fails to start
+    LaunchedEffect(isRunning) {
+        if (isRunning || (!isRunning && connecting)) {
+            connecting = false
+        }
+    }
+
+    // Determine button label - three stages: Start → Connecting → Stop
     val buttonLabel = when {
         connecting -> stringResource(R.string.connecting)
         isRunning -> stringResource(R.string.acc_stop)
         else -> stringResource(R.string.acc_start)
     }
+
+    // Button enabled during Start and Stop, disabled only during Connecting
+    val buttonEnabled = !connecting
 
     Column(
         modifier = Modifier
@@ -55,10 +66,11 @@ fun MainScreen(
         androidx.compose.foundation.Image(
             painter = painterResource(R.mipmap.ic_launcher_foreground),
             contentDescription = stringResource(R.string.app_name),
-            modifier = Modifier.size(250.dp)
+            modifier = Modifier.size(160.dp)
         )
 
-        Spacer(modifier = Modifier.height(50.dp))
+        Spacer(modifier = Modifier.height(15.dp))
+
 
         // Connect button - bigger, round, fancy
         Button(
@@ -66,11 +78,11 @@ fun MainScreen(
                 connecting = true
                 onAction(MainAction.ToggleService)
             },
-            enabled = !connecting,
-            shape = RoundedCornerShape(250.dp),
+            enabled = buttonEnabled,
+            shape = RoundedCornerShape(150.dp),
             modifier = Modifier
-                .width(200.dp)
-                .height(100.dp),
+                .width(260.dp)
+                .height(80.dp),
             colors = ButtonDefaults.buttonColors(
                 containerColor = MaterialTheme.colorScheme.primary,
                 contentColor = MaterialTheme.colorScheme.onPrimary
@@ -85,7 +97,7 @@ fun MainScreen(
             )
         }
 
-        Spacer(modifier = Modifier.height(50.dp))
+        Spacer(modifier = Modifier.height(24.dp))
 
         // Connection status string - no box, just text, clickable
         Text(
@@ -107,7 +119,7 @@ fun MainScreen(
             text = stringResource(R.string.made_with_love_for_freedom),
             style = MaterialTheme.typography.bodySmall.copy(
                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
-                fontSize = 12.sp
+                fontSize = 12.sp,
             ),
             textAlign = TextAlign.Center,
             modifier = Modifier.fillMaxWidth()
