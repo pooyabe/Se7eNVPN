@@ -55,10 +55,10 @@ fun MainScreen(
         androidx.compose.foundation.Image(
             painter = painterResource(R.mipmap.ic_launcher_foreground),
             contentDescription = stringResource(R.string.app_name),
-            modifier = Modifier.size(96.dp)
+            modifier = Modifier.size(250.dp)
         )
 
-        Spacer(modifier = Modifier.height(32.dp))
+        Spacer(modifier = Modifier.height(50.dp))
 
         // Connect button - bigger, round, fancy
         Button(
@@ -67,10 +67,10 @@ fun MainScreen(
                 onAction(MainAction.ToggleService)
             },
             enabled = !connecting,
-            shape = RoundedCornerShape(28.dp),
+            shape = RoundedCornerShape(250.dp),
             modifier = Modifier
-                .width(260.dp)
-                .height(56.dp),
+                .width(200.dp)
+                .height(100.dp),
             colors = ButtonDefaults.buttonColors(
                 containerColor = MaterialTheme.colorScheme.primary,
                 contentColor = MaterialTheme.colorScheme.onPrimary
@@ -85,7 +85,7 @@ fun MainScreen(
             )
         }
 
-        Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(50.dp))
 
         // Connection status string - no box, just text, clickable
         Text(
@@ -100,7 +100,7 @@ fun MainScreen(
                 .padding(16.dp)
         )
 
-        Spacer(modifier = Modifier.height(32.dp))
+        Spacer(modifier = Modifier.height(100.dp))
 
         // Footer text
         Text(
