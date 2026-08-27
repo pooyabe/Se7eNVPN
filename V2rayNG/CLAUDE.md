@@ -14,6 +14,11 @@ Simplify the application main page, and just left the connect button and the con
 - [x] Create simplified MainScreen composable (only connect button and clickable status string)
 - [x] Create simplified MainBottomBar composable (only connect button and clickable status string)
 - [x] Compile and verify the changes work
+- [x] Add application logo at top of connect button
+- [x] Make connect button bigger, round, and fancy styled
+- [x] Show "Connecting..." text when button clicked before state changes
+- [x] Remove box around connection status string (make text directly readable)
+- [x] Add "Made with ♥ for freedom" footer text
 
 # DONE-Tasks
 - Analyzed current MainScreen and MainBottomBar structure
@@ -21,13 +26,17 @@ Simplify the application main page, and just left the connect button and the con
 - Created simplified MainBottomBar composable with centered connect button and clickable status string
 - Fixed compilation errors (TextAlign import, collectAsStateWithLifecycle delegate, alignment issues)
 - Verified successful compilation
+- Enhanced MainScreen with logo, fancy round button, connecting state, unboxed status text, footer
 
 # JOBS-DONE
 1. Simplified MainScreen.kt - removed Scaffold, top bar, bottom bar, group tabs, horizontal pager, and all other UI elements. Now only shows a centered connect button and a clickable connection status string.
 2. Simplified MainBottomBar.kt - removed FAB and old layout. Now only shows centered connect button and clickable connection status string.
 3. Both components now use beautiful Material3 styling with centered layout.
+4. Enhanced MainScreen: added app logo (96dp), fancy rounded button (260x56dp with 28dp corner radius), "Connecting..." intermediate state, unboxed status text for readability, footer text "Made with ♥ for freedom".
+5. Added string resources: "connecting" and "made_with_love_for_freedom".
 
 # Edited-Files
 - app/src/main/java/com/v2ray/ang/ui/main/MainScreen.kt
 - app/src/main/java/com/v2ray/ang/ui/main/MainBottomBar.kt
+- app/src/main/res/values/strings.xml
 

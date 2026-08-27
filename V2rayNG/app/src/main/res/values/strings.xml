@@ -539,5 +539,7 @@
     <string name="tasker_blurb_stop">Stop %1$s</string>
     <string name="connection_test_empty_message">no details available</string>
     <string name="value_unknown">unknown</string>
+    <string name="connecting">Connecting…</string>
+    <string name="made_with_love_for_freedom">Made with ♥ for freedom</string>
 
 </resources>
