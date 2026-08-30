@@ -1,42 +1,20 @@
 # Project overview
 This is a fork of 2dust/v2rayNG android vpn application.
+The application name changed to Se7enVPN.
+The main screen activity has simplyfied, almost every element hided, and just remaind a button in the center for connect/disconnect - a top logo, a connection status string and a footer text.
+We injected a default VMESS string server config, and made it seleted as the default config for connecting and not the end user can not add or modify server address configs.
+This application, has a subscription option.(in default, now the user can not access it). a subscription, is a URL that application make a request to it, and gets updated server configs from that url. so the subscription actually is a upstream server for fetching and updating VPN server addresses based on Xray or V2ray.
 
 # This JOB
-Simplify the application main page, and just left the connect button and the connection status string (clickable). hide all other things and we don't want them. set some beautyfull style to remain items and make them center. in other word, we want just a simple apllication screen with a connect button and a clickable connection statusstring. that string, is now clickable by deafult and you don't have to add or modify anything for it's functionality. 
+Current job is, inject default subscription address, instead of default VMESS config.
+So, set the default subscription address on this:
+https://d1.sfng.ir:2096/api/v1/dj390mdisksak3d/5569510a-59e6-49c4-b045-994edf3c3094
+then, put a Dropdown select under the connect button in the main screen, so every time the application loads, a toast shows: updating. at this time, use the update-subscription-group option from the main application to update the servers list. after updateing, put the received servers in the drop down select box, so user can select a server and connects to it.
 
 # Rules
-- First of all create plans, tasks and subtasks before doing anything. write them in the CLAUDE.md file in the Tasks section.
-- After doing any step, check that step and move it in to DONE-Tasks section in CLAUDE.md file.
-- Store All jobs done and files edited in JOBS-DONE and Edited-Files sections in CLAUDE.md file.
+- First of all think about and create plans, tasks and subtasks before doing anything. write them in the CLAUDE.md file in the ToDo section.
+- Store the suumary of what happened and what you did and changes and udpates in JOBS-DONE sections in CLAUDE.md file.
 
-# Tasks
-- [x] Analyze current MainScreen and MainBottomBar structure
-- [x] Create simplified MainScreen composable (only connect button and clickable status string)
-- [x] Create simplified MainBottomBar composable (only connect button and clickable status string)
-- [x] Compile and verify the changes work
-- [x] Add application logo at top of connect button
-- [x] Make connect button bigger, round, and fancy styled
-- [x] Show "Connecting..." text when button clicked before state changes
-- [x] Remove box around connection status string (make text directly readable)
-- [x] Add "Made with ♥ for freedom" footer text
-
-# DONE-Tasks
-- Analyzed current MainScreen and MainBottomBar structure
-- Created simplified MainScreen composable with centered connect button and clickable status string
-- Created simplified MainBottomBar composable with centered connect button and clickable status string
-- Fixed compilation errors (TextAlign import, collectAsStateWithLifecycle delegate, alignment issues)
-- Verified successful compilation
-- Enhanced MainScreen with logo, fancy round button, connecting state, unboxed status text, footer
+# ToDo
 
 # JOBS-DONE
-1. Simplified MainScreen.kt - removed Scaffold, top bar, bottom bar, group tabs, horizontal pager, and all other UI elements. Now only shows a centered connect button and a clickable connection status string.
-2. Simplified MainBottomBar.kt - removed FAB and old layout. Now only shows centered connect button and clickable connection status string.
-3. Both components now use beautiful Material3 styling with centered layout.
-4. Enhanced MainScreen: added app logo (96dp), fancy rounded button (260x56dp with 28dp corner radius), "Connecting..." intermediate state, unboxed status text for readability, footer text "Made with ♥ for freedom".
-5. Added string resources: "connecting" and "made_with_love_for_freedom".
-
-# Edited-Files
-- app/src/main/java/com/v2ray/ang/ui/main/MainScreen.kt
-- app/src/main/java/com/v2ray/ang/ui/main/MainBottomBar.kt
-- app/src/main/res/values/strings.xml
-
